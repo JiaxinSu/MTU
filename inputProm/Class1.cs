@@ -254,6 +254,9 @@ namespace MTU
                 // put the text back (so we can do it again)
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='mask']")).SendKeys("Automatation test for mask");
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
+
+
+                Console.WriteLine("Updated MTU Masks successfully.");
             }
             catch (Exception e)
             {
@@ -308,6 +311,9 @@ namespace MTU
                 //check delete 
                 string s3 = driver.FindElement(By.XPath("/html/body/div[@class='flash notice']")).Text;
                 Assert.IsTrue(s3.Contains("successfully deleted"));
+
+
+                Console.WriteLine("Updated DNIS Overrides successfully.");
             }
             catch (Exception e)
             {
@@ -342,18 +348,15 @@ namespace MTU
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]/div[contains(@class, 'caption1')]")).Click();
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).Clear();
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).SendKeys("Auto Test MTU Countries");
-                Console.WriteLine("update");
+              
 
                 //3 --* check save *--// 
-                Console.WriteLine("countries check save");
                 String s = driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).ToString();
-                Console.Write("s is: ", s);
-
 
 
                 //2 --* save * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
-                Console.WriteLine("save");
+        
 
                 System.Threading.Thread.Sleep(2000);
 
@@ -366,7 +369,7 @@ namespace MTU
 
                 //6 --* check clear *--// 
                 String s5 = driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).ToString();
-                Console.WriteLine("s5 is: ", s5);
+              
 
 
                 //7 --* fill in for when field is originally blank *--/ 
@@ -374,11 +377,7 @@ namespace MTU
                 //8 --* save* --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
 
-                /*
-                //9 -- * check  * --/ 
-                String s6 = testdriver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Text;
-                Assert.IsTrue(s6.Contains("Automation Test"));
-                */
+                Console.WriteLine("Updated Translations Countries Successfully.");
             } 
             catch (Exception e)
             {
@@ -394,34 +393,35 @@ namespace MTU
             {
                 // go to carriers tab
                 driver.FindElement(By.XPath("//div[@id='sub-header']/a[1]")).Click();
-                Console.WriteLine("clicked on the carriers tab");
+ 
 
                 //1 -- * update * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]/div[contains(@class, 'caption1')]")).Click();
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).Clear();
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).SendKeys("Auto Test MTU Carriers");
-                Console.WriteLine("update");
+         
 
                 //2 --* save * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
-                Console.WriteLine("save");
-
-                System.Threading.Thread.Sleep(3000);
+           
+                System.Threading.Thread.Sleep(1000);
 
                 //4 -- * clear * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'clear button')]/div[contains(@class, 'caption1')]")).Click();
-                Console.WriteLine("clear");
+
                 // 5 -- *confirm *--/ 
                 IAlert alert = driver.SwitchTo().Alert();
                 alert.Accept();
-                Console.WriteLine("alert");
+  
 
                 //7 --* fill in for when field is originally blank *--/ 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).SendKeys("Auto Test MTU Carriers");
-                Console.WriteLine("fill in");
+
                 //8 --* save* --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
-                Console.WriteLine("find element");
+
+
+                Console.WriteLine("Updated Translations Carriers Successfully.");
 
             }
             catch (Exception e)
@@ -462,6 +462,7 @@ namespace MTU
                 //8 --* save* --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
 
+                Console.WriteLine("Updated Translations Products Successfully.");
             }
             catch (Exception e)
             {
@@ -482,29 +483,27 @@ namespace MTU
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]/div[contains(@class, 'caption1')]")).Click();
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][5]/input[@id='suffix']")).Clear();
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][5]/input[@id='suffix']")).SendKeys("Auto Test MTU Denom");
-                Console.WriteLine("update");
-
 
                 //2 --* save * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
-                Console.WriteLine("save");
+
 
                 System.Threading.Thread.Sleep(4000);
 
                 //4 -- * clear * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'clear button')]/div[contains(@class, 'caption1')]")).Click();
-                Console.WriteLine("clear");
 
                 // 5 -- *confirm *--/ 
                 IAlert alert = driver.SwitchTo().Alert();
                 alert.Accept();
-                Console.WriteLine("confirm");
-
+  
                 //7 --* fill in for when field is originally blank *--/ 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][5]/input[@id='suffix']")).SendKeys("Auto Test MTU Denom");
                 //8 --* save* --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
 
+
+                Console.WriteLine("Updated Translations Denoms Successfully.");
             }
             catch (Exception e)
             {
