@@ -141,7 +141,8 @@ namespace MTU
             }
             catch (Exception e)
             {
-                Console.WriteLine("login error");
+                Console.WriteLine("{0} Exception caught.", e);
+                Console.ReadLine();
             }
 
         }
@@ -176,9 +177,10 @@ namespace MTU
             }
             catch (Exception e)
             {
-                Console.WriteLine("EXCEPTION caught at masks", e);
+                Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
+      
         }
         [Test]
         public void B3_a2_MasksandDNIS_DNIS_overrides()
@@ -228,7 +230,7 @@ namespace MTU
             }
             catch (Exception e)
             {
-                Console.WriteLine("EXCEPTION caught at DNIS ", e);
+                Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
 
@@ -243,7 +245,7 @@ namespace MTU
             }
             catch (Exception e)
             {
-                Console.WriteLine("EXCPETION at MTU Login");
+                Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
         }
@@ -297,7 +299,7 @@ namespace MTU
             }
             catch (Exception e)
             {
-                Console.WriteLine("EXCEPTION at countries ", e);
+                Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
         }
@@ -340,7 +342,7 @@ namespace MTU
             }
             catch (Exception e)
             {
-                Console.WriteLine("EXCEPTION at carriers ", e);
+                Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
         }
@@ -378,7 +380,7 @@ namespace MTU
             }
             catch (Exception e)
             {
-                Console.WriteLine("EXCEPTION at products: ", e);
+                Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
         }
@@ -420,7 +422,7 @@ namespace MTU
             }
             catch (Exception e)
             {
-                Console.WriteLine("EXCEPTION at denom ", e);
+                Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
         }
