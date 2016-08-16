@@ -31,7 +31,7 @@ namespace MTU
         }
 
         [Test]
-        public void a_Login()
+        public void A0_Login()
         {
             try
             {
@@ -232,37 +232,65 @@ namespace MTU
         [Test]
         public void A6_DeleteTemplate()
         {
-            // go to InputProm page from the index page
-            driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084/");
-            driver.FindElement(By.XPath("//div[contains(@class, 'links')]/a[4]")).Click();
+            try
+            {
+                // go to InputProm page from the index page
+                driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084/");
+                driver.FindElement(By.XPath("//div[contains(@class, 'links')]/a[4]")).Click();
 
-            // go to prom subtab & delete prom
-            driver.FindElement(By.XPath("//div[@id='sub-header']/a[1]")).Click();
-            driver.FindElement(By.XPath("//select")).SendKeys("Ended Any Time");
-            driver.FindElement(By.ClassName("search_button")).Click();
-            driver.FindElement(By.XPath("//a[contains(@class, 'delete button')]/div[contains(@class, 'caption1')]")).Click();
-            IAlert alert_prom_sub = driver.SwitchTo().Alert();
-            alert_prom_sub.Accept();
-            IWebElement prom_msg = driver.FindElement(By.XPath("//p"));
-            Assert.IsTrue(prom_msg.Text.Contains("Promotion"));
-            Assert.IsTrue(prom_msg.Text.Contains("successfully deleted"));
-            Console.WriteLine("Deleted Added Promotion from Promotion Subtab Successfully");
-            Console.ReadLine();
+                // go to prom subtab & delete prom
+                driver.FindElement(By.XPath("//div[@id='sub-header']/a[1]")).Click();
+                driver.FindElement(By.XPath("//select")).SendKeys("Ended Any Time");
+                driver.FindElement(By.ClassName("search_button")).Click();
+                driver.FindElement(By.XPath("//a[contains(@class, 'delete button')]/div[contains(@class, 'caption1')]")).Click();
+                IAlert alert_prom_sub = driver.SwitchTo().Alert();
+                alert_prom_sub.Accept();
+                IWebElement prom_msg = driver.FindElement(By.XPath("//p"));
+                Assert.IsTrue(prom_msg.Text.Contains("Promotion"));
+                Assert.IsTrue(prom_msg.Text.Contains("successfully deleted"));
+                Console.WriteLine("Deleted Added Promotion from Promotion Subtab Successfully");
+                Console.ReadLine();
 
-            // go to templates subtab & delete template
-            driver.FindElement(By.XPath("//div[@id='sub-header']/a[1]")).Click();
-            driver.FindElement(By.XPath("//select")).SendKeys("Both");
-            driver.FindElement(By.ClassName("search_button")).Click();
-            driver.FindElement(By.XPath("//a[contains(@class, 'delete button')]/div[contains(@class, 'caption1')]")).Click();
-            IAlert alert_temp_sub = driver.SwitchTo().Alert();
-            alert_temp_sub.Accept();
-            IWebElement temp_msg = driver.FindElement(By.XPath("//p"));
-            Assert.IsTrue(temp_msg.Text.Contains("Promotion Template"));
-            Assert.IsTrue(temp_msg.Text.Contains("successfully deleted"));
-            Console.WriteLine("Deleted Added Template from Template Subtab Successfully");
-            Console.ReadLine();
+                // go to templates subtab & delete template
+                driver.FindElement(By.XPath("//div[@id='sub-header']/a[1]")).Click();
+                driver.FindElement(By.XPath("//select")).SendKeys("Both");
+                driver.FindElement(By.ClassName("search_button")).Click();
+                driver.FindElement(By.XPath("//a[contains(@class, 'delete button')]/div[contains(@class, 'caption1')]")).Click();
+                IAlert alert_temp_sub = driver.SwitchTo().Alert();
+                alert_temp_sub.Accept();
+                IWebElement temp_msg = driver.FindElement(By.XPath("//p"));
+                Assert.IsTrue(temp_msg.Text.Contains("Promotion Template"));
+                Assert.IsTrue(temp_msg.Text.Contains("successfully deleted"));
+                Console.WriteLine("Deleted Added Template from Template Subtab Successfully");
+                Console.ReadLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("{0} Exception caught.", e);
+                Console.ReadLine();
+            }
                 
-        } 
+        }
+
+
+        [Test]
+        public void D_Logout()
+        {
+            try
+            {
+                // go to index page 
+                driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084/");
+                driver.FindElement(By.XPath("//div[contains(@class, 'links')]/a[7]")).Click();
+                Console.WriteLine("Logged In Successfully");
+                Console.ReadLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("{0} Exception caught.", e);
+                Console.ReadLine();
+            }
+
+        }
 
         // -----------------------------------------------------------------------//
 
@@ -313,7 +341,7 @@ namespace MTU
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='mask']")).SendKeys("Automatation test for mask");
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
 
-                Console.WriteLine("Pass MasksandDNIS_phone_number_masks successfully");
+                Console.WriteLine("Updated MTU MasksandDNIS_phone_number_masks successfully.");
                 Console.ReadLine();
 
             }
@@ -371,7 +399,7 @@ namespace MTU
                 string s3 = driver.FindElement(By.XPath("/html/body/div[@class='flash notice']")).Text;
                 Assert.IsTrue(s3.Contains("successfully deleted"));
 
-                Console.WriteLine("Pass MasksandDNIS_DNIS_overrides successfully");
+                Console.WriteLine("Updated MasksandDNIS_DNIS_overrides successfully");
                 Console.ReadLine();
 
             }
@@ -433,8 +461,6 @@ namespace MTU
 
                 //6 --* check clear *--// 
                 String s5 = driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).ToString();
-                // Console.WriteLine("s5 is: ", s5);
-
 
                 //7 --* fill in for when field is originally blank *--/ 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).SendKeys("Auto Test MTU Countries");
@@ -446,7 +472,7 @@ namespace MTU
                 String s6 = testdriver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Text;
                 Assert.IsTrue(s6.Contains("Automation Test"));
                 */
-                Console.WriteLine("Passed MTU Translation Countries successfully");
+                Console.WriteLine("Updated MTU Translation Countries successfully");
                 Console.ReadLine();
 
             } 
@@ -464,36 +490,33 @@ namespace MTU
             {
                 // go to carriers tab
                 driver.FindElement(By.XPath("//div[@id='sub-header']/a[1]")).Click();
-                // Console.WriteLine("clicked on the carriers tab");
 
                 //1 -- * update * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]/div[contains(@class, 'caption1')]")).Click();
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).Clear();
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).SendKeys("Auto Test MTU Carriers");
-                // Console.WriteLine("update");
 
                 //2 --* save * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
-                // Console.WriteLine("save");
-
-                System.Threading.Thread.Sleep(3000);
+           
+                System.Threading.Thread.Sleep(1000);
 
                 //4 -- * clear * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'clear button')]/div[contains(@class, 'caption1')]")).Click();
-                // Console.WriteLine("clear");
+
                 // 5 -- *confirm *--/ 
                 IAlert alert = driver.SwitchTo().Alert();
                 alert.Accept();
-                // Console.WriteLine("alert");
+  
 
                 //7 --* fill in for when field is originally blank *--/ 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).SendKeys("Auto Test MTU Carriers");
-                // Console.WriteLine("fill in");
+
                 //8 --* save* --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
-                //Console.WriteLine("find element");
 
-                Console.WriteLine("Passed MTU Translation Carrier successfully");
+
+                Console.WriteLine("Updated MTU Translations Carriers Successfully.");
                 Console.ReadLine();
 
             }
@@ -535,7 +558,7 @@ namespace MTU
                 //8 --* save* --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
 
-                Console.WriteLine("Passed MTU Translation Products successfully");
+                Console.WriteLine("Updated MTU Translation Products successfully");
                 Console.ReadLine();
 
             }
@@ -558,31 +581,28 @@ namespace MTU
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]/div[contains(@class, 'caption1')]")).Click();
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][5]/input[@id='suffix']")).Clear();
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][5]/input[@id='suffix']")).SendKeys("Auto Test MTU Denom");
-                // Console.WriteLine("update");
-
 
                 //2 --* save * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
-                // Console.WriteLine("save");
+
 
                 System.Threading.Thread.Sleep(4000);
 
                 //4 -- * clear * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'clear button')]/div[contains(@class, 'caption1')]")).Click();
-                // Console.WriteLine("clear");
 
                 // 5 -- *confirm *--/ 
                 IAlert alert = driver.SwitchTo().Alert();
                 alert.Accept();
-                // Console.WriteLine("confirm");
-
+  
                 //7 --* fill in for when field is originally blank *--/ 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][5]/input[@id='suffix']")).SendKeys("Auto Test MTU Denom");
                 //8 --* save* --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
 
-                Console.WriteLine("Passed MTU Translation Denom Suffix successfully");
+                Console.WriteLine("Updated MTU Translation Denom Suffix successfully");
                 Console.ReadLine();
+
             }
             catch (Exception e)
             {
@@ -602,11 +622,7 @@ namespace MTU
 
         }  
          
-         [Test]
-         public void D_Logout() {
-         
-         
-         }
+        
          * 
          */
 
