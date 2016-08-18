@@ -37,7 +37,7 @@ namespace MTU
             {
                 driver = new ChromeDriver();
                 driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084");
-                Task.Delay(10000).Wait();  // wait for 10 seconds for the user to enter username & password
+                Task.Delay(40000).Wait();  // wait for 40 seconds for the user to enter username & password
                 Console.WriteLine("Logged In Successfully");
                 Console.ReadLine();
             }
@@ -281,7 +281,7 @@ namespace MTU
                 // go to index page 
                 driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084/");
                 driver.FindElement(By.XPath("//div[contains(@class, 'links')]/a[7]")).Click();
-                Console.WriteLine("Logged In Successfully");
+                Console.WriteLine("Logged Out Successfully");
                 Console.ReadLine();
             }
             catch (Exception e)
@@ -310,6 +310,7 @@ namespace MTU
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
+            
 
         }
 
@@ -350,7 +351,7 @@ namespace MTU
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
-      
+            
         }
 
         [Test]
@@ -427,6 +428,7 @@ namespace MTU
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
+            
         }
 
         [Test]
@@ -481,6 +483,7 @@ namespace MTU
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
+            
         }
 
         [Test]
@@ -525,6 +528,7 @@ namespace MTU
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
+            
         }
 
         [Test]
@@ -567,6 +571,7 @@ namespace MTU
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
+            
         }
 
         [Test]
