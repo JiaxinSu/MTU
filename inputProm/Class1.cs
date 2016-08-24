@@ -89,11 +89,23 @@ namespace MTU
                 Console.ReadLine();
                 Console.WriteLine("Logged In Successfully");
                 Console.ReadLine();
+
+                // jira screenshot
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\Login.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\Login.png");
             }
             catch (Exception e)
             {
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
+
+                // jira screenshot
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\Login.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\Login.png");
             }
         }
 
