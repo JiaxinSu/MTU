@@ -1,0 +1,5 @@
+WinWaitActive("Authentication Required")
+Send("cliang")
+Send("{TAB}")
+Send("Shortbanana23")
+Send("{ENTER}")

@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="true">
-  <TopNode>[0-1017]C:\Users\cliang\Documents\Visual Studio 2013\Projects\MTU\inputProm\bin\Debug\inputProm.dll</TopNode>
-  <SelectedNode>[0-1017]C:\Users\cliang\Documents\Visual Studio 2013\Projects\MTU\inputProm\bin\Debug\inputProm.dll</SelectedNode>
+  <TopNode>[0-1018]C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\bin\Debug\inputProm.dll</TopNode>
+  <SelectedNode>[0-1018]C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\bin\Debug\inputProm.dll</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1017]C:\Users\cliang\Documents\Visual Studio 2013\Projects\MTU\inputProm\bin\Debug\inputProm.dll" Expanded="true" />
-    <Node UniqueName="[0-1018]MTU" Expanded="true" />
-    <Node UniqueName="[0-1000]MTU.MTU" Expanded="true" Checked="true" />
+    <Node UniqueName="[0-1018]C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\bin\Debug\inputProm.dll" Expanded="true" />
+    <Node UniqueName="[0-1019]MTU" Expanded="true" />
+    <Node UniqueName="[0-1000]MTU.MTU" Expanded="true" />
+    <Node UniqueName="[0-1001]MTU.MTU.A0_Login" Checked="true" />
+    <Node UniqueName="[0-1002]MTU.MTU.A1_AddNewTemplate" Checked="true" />
+    <Node UniqueName="[0-1007]MTU.MTU.A6_DeleteTemplate" Checked="true" />
+    <Node UniqueName="[0-1008]MTU.MTU.D_Logout" Checked="true" />
+    <Node UniqueName="[0-1017]MTU.MTU.JIRA" Checked="true" />
   </Nodes>
 </VisualState>

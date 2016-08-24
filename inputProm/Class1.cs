@@ -65,6 +65,8 @@ namespace MTU
          
        }
         */
+
+        [Test]
         public void A0_Login()
         {
             try
@@ -77,7 +79,7 @@ namespace MTU
                 string URL = "http://" + username + ":" + password + "@lbossqa.corp.idt.net:9084";
                 Console.WriteLine("URL: " + URL);
                 Console.ReadLine(); */
-                String filePath = "C:\\Users\\jsu\\Desktop\\autoLogin.exe";
+                String filePath = "C:\\Users\\jsu\\Documents\\Visual Studio 2013\\Projects\\inputProm\\inputProm\\autoLogin.exe";
                 Process.Start(filePath);
 
                 driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084");
