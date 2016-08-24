@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\cliang\Documents\Visual Studio 2013\Projects\MTU\inputProm\bin\Debug\inputProm.dll" total="14" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2016-08-24" time="15:53:42">
+  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.8689" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.3\bin" machine-name="DT-DELLGLHJRW1" user="cliang" user-domain="AM" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Users\cliang\Documents\Visual Studio 2013\Projects\MTU\inputProm\bin\Debug\inputProm.dll" executed="True" result="Success" success="True" time="211.625" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="MTU" executed="True" result="Success" success="True" time="211.617" asserts="0">
+        <results>
+          <test-suite type="TestFixture" name="MTU" executed="True" result="Success" success="True" time="211.615" asserts="0">
+            <results>
+              <test-case name="MTU.MTU.a_login" executed="True" result="Success" success="True" time="23.047" asserts="0" />
+              <test-case name="MTU.MTU.A1_addNewTemplate" executed="True" result="Success" success="True" time="2.691" asserts="0" />
+              <test-case name="MTU.MTU.A2_UpdateTemplate" executed="True" result="Success" success="True" time="8.165" asserts="2" />
+              <test-case name="MTU.MTU.A3_addedNewProm" executed="True" result="Success" success="True" time="13.434" asserts="2" />
+              <test-case name="MTU.MTU.A4_check_promo_subtab" executed="True" result="Success" success="True" time="9.732" asserts="2" />
+              <test-case name="MTU.MTU.B1_setup" executed="True" result="Success" success="True" time="0.216" asserts="0" />
+              <test-case name="MTU.MTU.B2_a1_MasksandDNIS_phone_number_masks" executed="True" result="Success" success="True" time="1.940" asserts="0" />
+              <test-case name="MTU.MTU.B3_a2_MasksandDNIS_DNIS_overrides" executed="True" result="Success" success="True" time="16.692" asserts="3" />
+              <test-case name="MTU.MTU.B4_b_MTU" executed="True" result="Success" success="True" time="1.534" asserts="0" />
+              <test-case name="MTU.MTU.B5_b1_MTUTranslations_a_Countries" executed="True" result="Success" success="True" time="2.405" asserts="0" />
+              <test-case name="MTU.MTU.B6_b2_MTUTranslations_b_Carriers" executed="True" result="Success" success="True" time="6.140" asserts="0" />
+              <test-case name="MTU.MTU.B7_b3_MTUTranslations_c_Products" executed="True" result="Success" success="True" time="9.906" asserts="0" />
+              <test-case name="MTU.MTU.B8_b4_MTUTranslations_d_DenomSuffix" executed="True" result="Success" success="True" time="2.247" asserts="0" />
+              <test-case name="MTU.MTU.JIRA" executed="True" result="Success" success="True" time="102.088" asserts="0" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

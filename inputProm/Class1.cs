@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox; 
 using OpenQA.Selenium.Support.UI;
+using System.Collections;
+using OpenQA.Selenium.Support.UI;
+using System.Drawing.Imaging;
+using System.Collections;
+using System.IO; 
+
 
 
 namespace MTU
@@ -15,8 +22,12 @@ namespace MTU
     public class MTU
     {
         // class variables
-        static IWebDriver driver; 
+        static IWebDriver driver = new FirefoxDriver(); 
         string label = "Jiaxin-Testing";
+        ArrayList JIRA_Array = new ArrayList();
+        ArrayList JIRA_screenshots = new ArrayList(); 
+        String JIRA_Username = "cliang";
+        String JIRA_Password = "Shortbanana24";      
         
         [SetUp]
         public void login()
@@ -32,15 +43,27 @@ namespace MTU
 
         [Test]
         public void a_login()
-        {
-            driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084");
-            Task.Delay(10000).Wait();  // wait for 10 seconds for the user to enter username & password
-        }
+        {             
+                driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084");
+                Task.Delay(10000).Wait();  // wait for 10 seconds for the user to enter username & password
+             
+
+                // jira message 
+                String jiraText = "Login: SUCCESS";
+                JIRA_Array.Add(jiraText);
+            
+                // jira screenshot
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\Login.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\Login.png");
+         
+       }
 
         [Test]
         public void A1_addNewTemplate()
         {
+            
             try
             {
                 
@@ -74,11 +97,32 @@ namespace MTU
                 string added_msg = driver.FindElement(By.XPath("//p")).Text;
                 Assert.IsTrue(added_msg.Contains("Template"));
                 Assert.IsTrue(added_msg.Contains("successfully added"));
-                Console.WriteLine("Added New Template Successfully");
 
+                // jira comment 
+                String jiraText = "Add New Template: SUCCESS";
+                JIRA_Array.Add(jiraText);
+                Console.Write("Add New Template Updated Succesfully");
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\Add_New_Template.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\Add_New_Template.png");
+            
             }
             catch (Exception e)
             {
+                // jira comment
+                String jiraText = "Add New Template: ERROR";
+                JIRA_Array.Add(jiraText);
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\Add_New_Template.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\Add_New_Template.png");
+
+                // console
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
@@ -104,10 +148,30 @@ namespace MTU
                 IWebElement updated_msg = driver.FindElement(By.XPath("//p"));
                 Assert.IsTrue(updated_msg.Text.Contains("Template"));
                 Assert.IsTrue(updated_msg.Text.Contains("successfully updated"));
+
+                // jira comment 
+                String jiraText = "Update Template: SUCCESS";
+                JIRA_Array.Add(jiraText);
                 Console.WriteLine("Updated Added Template Successfully");
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\UpdateTemplate.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\UpdateTemplate.png");
+
             }
             catch (Exception e)
             {
+                String jiraText = "Update Template: ERROR";
+                JIRA_Array.Add(jiraText);
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\UpdateTemplate.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\UpdateTemplate.png");
+
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
@@ -140,11 +204,30 @@ namespace MTU
                 IWebElement prom_msg = driver.FindElement(By.XPath("//p"));
                 Assert.IsTrue(prom_msg.Text.Contains("Promotion"));
                 Assert.IsTrue(prom_msg.Text.Contains("successfully added"));
+
+                String jiraText = "Add New Promotion: SUCCESS";
+                JIRA_Array.Add(jiraText);
                 Console.WriteLine("Added New Promotion Successfully");
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\addedNewProm.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\addedNewProm.png");
+
                 
             }
             catch (Exception e)
             {
+                String jiraText = "Add New Promotion: ERROR";
+                JIRA_Array.Add(jiraText);
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\addedNewProm.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\addedNewProm.png");
+
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
@@ -174,11 +257,31 @@ namespace MTU
                 IWebElement prom_msg = driver.FindElement(By.XPath("//p"));
                 Assert.IsTrue(prom_msg.Text.Contains("Promotion"));
                 Assert.IsTrue(prom_msg.Text.Contains("successfully updated"));
+
+                String jiraText = "Updated Added Promotion from Promotion Subtab: SUCCESS";
+                JIRA_Array.Add(jiraText);
                 Console.WriteLine("Updated Added Promotion from Promotion Subtab Successfully");
+
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\check_promo_subtab.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\check_promo_subtab.png");
 
             }
             catch (Exception e)
             {
+
+                String jiraText = "Updated Added Promotion from Promotion Subtab: ERROR";
+                JIRA_Array.Add(jiraText);
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\check_promo_subtab.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\check_promo_subtab.png");
+
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
@@ -204,19 +307,14 @@ namespace MTU
             Task.Delay(10000).Wait();  // wait for 10 seconds            
         } */
 
-        // -----------------------------------------------------------------------//
-
-    //    IWebDriver testdriver;
+     
         [Test]
         public void B1_setup()
         {
             try
-            {
-             //   testdriver = new ChromeDriver();
-                  driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084/");
-                // System.Threading.Thread.Sleep(10000);
+            {   
                 // go to masks & dnis tab because other tabs cannot be access from the home page via XPath 
-                driver.FindElement(By.XPath("//div[contains(@class, 'links')]/a[1]")).Click();
+                driver.FindElement(By.XPath("/html/body/div[@id='header']/div[@class='links']/a[1]")).Click();
             }
             catch (Exception e)
             {
@@ -231,7 +329,6 @@ namespace MTU
         {
             try
             {
-
                 //  --* Update & Save *--// 
                 //click update for first field
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]/div[contains(@class, 'caption1')]")).Click();
@@ -255,15 +352,34 @@ namespace MTU
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='mask']")).SendKeys("Automatation test for mask");
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
 
+                // jira message 
+                String jiraText = "Jira Masks & DNIS phone number masks: SUCCESS";
+                JIRA_Array.Add(jiraText);
 
+                //console output
                 Console.WriteLine("Updated MTU Masks successfully.");
+                
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\MasksandDNIS_phone_number_masks.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\MasksandDNIS_phone_number_masks.png");
             }
             catch (Exception e)
             {
+                String jiraText = "JIra Masks & DNIS phone number masks: ERROR";
+                JIRA_Array.Add(jiraText);
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\MasksandDNIS_phone_number_masks.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\MasksandDNIS_phone_number_masks.png");
+
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
-      
+   
         }
 
         [Test]
@@ -309,14 +425,31 @@ namespace MTU
                 IAlert alert = driver.SwitchTo().Alert();
                 alert.Accept();
                 //check delete 
+
                 string s3 = driver.FindElement(By.XPath("/html/body/div[@class='flash notice']")).Text;
                 Assert.IsTrue(s3.Contains("successfully deleted"));
 
-
+                String DNISOverrides = "DNIS Overrides: SUCCESS";
+                JIRA_Array.Add(DNISOverrides);
                 Console.WriteLine("Updated DNIS Overrides successfully.");
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\MasksandDNIS_DNIS_overrides.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\MasksandDNIS_DNIS_overrides.png");
             }
             catch (Exception e)
             {
+                String jiraText = "DNIS Overrides: ERROR";
+                JIRA_Array.Add(jiraText);
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\MasksandDNIS_DNIS_overrides.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\MasksandDNIS_DNIS_overrides.png");
+
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
@@ -377,10 +510,27 @@ namespace MTU
                 //8 --* save* --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
 
+                String jiraText = "Translations - Countries: SUCCESS";
+                JIRA_Array.Add(jiraText);
                 Console.WriteLine("Updated Translations Countries Successfully.");
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\MTUTranslations_a_Countries.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\MTUTranslations_a_Countries.png");
             } 
             catch (Exception e)
             {
+                String jiraText = "Translations - Countries: ERROR";
+                JIRA_Array.Add(jiraText);
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\MTUTranslations_a_Countries.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\MTUTranslations_a_Countries.png");
+
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
@@ -420,12 +570,30 @@ namespace MTU
                 //8 --* save* --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
 
+                String jiraText = "Carriers: SUCCESS";
+                JIRA_Array.Add(jiraText);
 
                 Console.WriteLine("Updated Translations Carriers Successfully.");
+
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\MTUTranslations_b_Carriers.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\MTUTranslations_b_Carriers.png");
 
             }
             catch (Exception e)
             {
+                String jiraText = "Carriers: ERROR";
+                JIRA_Array.Add(jiraText);
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\MTUTranslations_b_Carriers.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\MTUTranslations_b_Carriers.png");
+
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
@@ -462,10 +630,27 @@ namespace MTU
                 //8 --* save* --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
 
+                String jiraText = "Translations Products: SUCCESS";
+                JIRA_Array.Add(jiraText);
                 Console.WriteLine("Updated Translations Products Successfully.");
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\MTUTranslations_c_Products.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\MTUTranslations_c_Products.png");
             }
             catch (Exception e)
             {
+                String jiraText = "Translations Products: ERROR";
+                JIRA_Array.Add(jiraText);
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\MTUTranslations_c_Products.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\MTUTranslations_c_Products.png");
+
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
@@ -502,8 +687,88 @@ namespace MTU
                 //8 --* save* --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
 
-
+                String jiraText = "Translations - Denoms: SUCCESS";
+                JIRA_Array.Add(jiraText);
                 Console.WriteLine("Updated Translations Denoms Successfully.");
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\MTUTranslations_d_DenomSuffix.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\MTUTranslations_d_DenomSuffix.png");
+
+
+            }
+            catch (Exception e)
+            {
+                String jiraText = "Translations - Denoms: ERROR";
+                JIRA_Array.Add(jiraText);
+
+                //jira screenshot 
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
+                ss.SaveAsFile("C:\\MTU_Screenshots\\MTUTranslations_d_DenomSuffix.png", System.Drawing.Imaging.ImageFormat.Png);
+                JIRA_screenshots.Add("C:\\MTU_Screenshots\\MTUTranslations_d_DenomSuffix.png");
+
+                Console.WriteLine("{0} Exception caught.", e);
+                Console.ReadLine();
+            }
+
+        }
+
+        [Test]
+        public void JIRA()
+        {
+
+            try
+            {
+                // open 
+                IWebDriver jiraDriver = new FirefoxDriver(); 
+                jiraDriver.Navigate().GoToUrl("https://bugs.idt.net/browse/RMTUA-68");
+
+                //login
+                jiraDriver.FindElement(By.XPath("//input[@id='login-form-username']")).SendKeys(JIRA_Username);
+                jiraDriver.FindElement(By.XPath("//input[@id='login-form-password']")).SendKeys(JIRA_Password);
+                jiraDriver.FindElement(By.XPath("//input[@id='login-form-submit']")).Click();
+
+
+                //comments 
+                jiraDriver.FindElement(By.Id("comment-issue")).Click();
+
+                for (int i = 0; i < JIRA_Array.Count; i++)
+                {
+                    String toSend = JIRA_Array[i].ToString();
+                    IWebElement textField = jiraDriver.FindElement(By.CssSelector("textarea#comment.textarea.long-field.wiki-textfield.mentionable")); 
+                    // IWebElement textField = jiraDriver.FindElement(By.CssSelector("textarea#comment.textarea.long-field.wiki-textfield.mentionable"));
+                    textField.SendKeys(toSend + Keys.Enter);
+
+
+                }
+                // submit comment
+                jiraDriver.FindElement(By.CssSelector("input#issue-comment-add-submit.aui-button")).Click(); 
+
+
+
+                // screenshot
+                jiraDriver.FindElement(By.CssSelector("span.dropdown-text")).Click();
+                jiraDriver.FindElement(By.Id("attach-file")).Click();                
+                jiraDriver.SwitchTo().ActiveElement();
+
+                for (int y = 0; y < JIRA_screenshots.Count; y++)
+                {
+                    Console.WriteLine("pic count: " + JIRA_screenshots.Count);
+                    Console.WriteLine(JIRA_screenshots[y]);
+                    Task.Delay(1000).Wait();
+                    IJavaScriptExecutor jslib = jiraDriver as IJavaScriptExecutor;
+                    jslib.ExecuteScript("document.getElementsByClassName('upfile')[0].style.display = 'block';");
+                    IWebElement input = jiraDriver.FindElement(By.CssSelector("input.issue-drop-zone__file.ignore-inline-attach.upfile"));         
+                    input.SendKeys(JIRA_screenshots[y].ToString());
+                    
+                }
+                //submit screenshot
+                jiraDriver.FindElement(By.Id("attach-file-submit")).Click(); 
+                
+
             }
             catch (Exception e)
             {
@@ -511,16 +776,5 @@ namespace MTU
                 Console.ReadLine();
             }
         }
-
-        [Test]
-        public void c_IVR_Files()
-        {
-            // not currently working // 
-            // -- * new * -- // 
-            // -- update & save --// 
-            // -- delete --//
-
-        } 
-
     } 
 }
