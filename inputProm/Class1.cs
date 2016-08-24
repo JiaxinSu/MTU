@@ -7,7 +7,9 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Firefox;
 
+using System.Diagnostics;
 
 namespace MTU
 {
@@ -35,9 +37,24 @@ namespace MTU
         {
             try
             {
-                driver = new ChromeDriver();
+                driver = new FirefoxDriver();
+             /*   String username = "cliang";
+                String password = "Shortbanana23";
+                Console.WriteLine("username: " + username);
+                Console.WriteLine("password: " + password);
+                string URL = "http://" + username + ":" + password + "@lbossqa.corp.idt.net:9084";
+                Console.WriteLine("URL: " + URL);
+                Console.ReadLine(); */
+                String filePath = "C:\\Users\\jsu\\Desktop\\autoLogin.exe";
+                Process.Start(filePath);
+
                 driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084");
-                Task.Delay(40000).Wait();  // wait for 40 seconds for the user to enter username & password
+                
+               // driver.Navigate().GoToUrl(URL);
+                Console.WriteLine("after going to URL");
+                Task.Delay(1000).Wait();  // wait for 40 seconds for the user to enter username & password
+                Console.WriteLine("after waiting");
+                Console.ReadLine();
                 Console.WriteLine("Logged In Successfully");
                 Console.ReadLine();
             }
@@ -550,7 +567,7 @@ namespace MTU
 
                 System.Threading.Thread.Sleep(4000);
 
-                //4 -- * clear * --// 
+                //4 -- * clear * --//  
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'clear button')]/div[contains(@class, 'caption1')]")).Click();
 
                 // 5 -- *confirm *--/ 
