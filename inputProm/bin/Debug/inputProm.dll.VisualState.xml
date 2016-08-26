@@ -9,6 +9,10 @@
     <Node UniqueName="[0-1000]MTU.MTU" Expanded="true" />
     <Node UniqueName="[0-1001]MTU.MTU.A0_Login" Checked="true" />
     <Node UniqueName="[0-1002]MTU.MTU.A1_AddNewTemplate" Checked="true" />
+    <Node UniqueName="[0-1003]MTU.MTU.A2_UpdateTemplate" Checked="true" />
+    <Node UniqueName="[0-1004]MTU.MTU.A3_AddedNewProm" Checked="true" />
+    <Node UniqueName="[0-1005]MTU.MTU.A4_CheckPromoSubtab" Checked="true" />
+    <Node UniqueName="[0-1006]MTU.MTU.A5_CheckInPromMarket" Checked="true" />
     <Node UniqueName="[0-1007]MTU.MTU.A6_DeleteTemplate" Checked="true" />
     <Node UniqueName="[0-1008]MTU.MTU.D_Logout" Checked="true" />
     <Node UniqueName="[0-1017]MTU.MTU.JIRA" Checked="true" />
