@@ -23,6 +23,5 @@ C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\bin\Debug
 C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\bin\Debug\ThoughtWorks.Selenium.Core.xml
 C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\bin\Debug\WebDriver.xml
 C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\bin\Debug\WebDriver.Support.xml
-C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\obj\Debug\inputProm.csprojResolveAssemblyReference.cache
 C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\obj\Debug\inputProm.dll
 C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\obj\Debug\inputProm.pdb

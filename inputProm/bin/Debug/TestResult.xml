@@ -1,23 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\bin\Debug\inputProm.dll" total="9" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2016-08-24" time="16:34:28">
+<test-results name="C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\bin\Debug\inputProm.dll" total="8" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2016-09-01" time="10:23:33">
   <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5485" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Windows\system32" machine-name="LT-DELLHMP3XW1" user="jsu" user-domain="AM" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="Assembly" name="C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\bin\Debug\inputProm.dll" executed="True" result="Success" success="True" time="64.314" asserts="0">
+  <test-suite type="Assembly" name="C:\Users\jsu\Documents\Visual Studio 2013\Projects\inputProm\inputProm\bin\Debug\inputProm.dll" executed="True" result="Success" success="True" time="156.510" asserts="0">
     <results>
-      <test-suite type="Namespace" name="MTU" executed="True" result="Success" success="True" time="64.313" asserts="0">
+      <test-suite type="Namespace" name="MTU" executed="True" result="Success" success="True" time="156.509" asserts="0">
         <results>
-          <test-suite type="TestFixture" name="MTU" executed="True" result="Success" success="True" time="64.311" asserts="0">
+          <test-suite type="TestFixture" name="MTU" executed="True" result="Success" success="True" time="156.507" asserts="0">
             <results>
-              <test-case name="MTU.MTU.A0_Login" executed="True" result="Success" success="True" time="7.440" asserts="0" />
-              <test-case name="MTU.MTU.A1_AddNewTemplate" executed="True" result="Success" success="True" time="6.315" asserts="2" />
-              <test-case name="MTU.MTU.A2_UpdateTemplate" executed="True" result="Success" success="True" time="5.646" asserts="2" />
-              <test-case name="MTU.MTU.A3_AddedNewProm" executed="True" result="Success" success="True" time="5.954" asserts="2" />
-              <test-case name="MTU.MTU.A4_CheckPromoSubtab" executed="True" result="Success" success="True" time="3.960" asserts="2" />
-              <test-case name="MTU.MTU.A5_CheckInPromMarket" executed="True" result="Success" success="True" time="4.603" asserts="2" />
-              <test-case name="MTU.MTU.A6_DeleteTemplate" executed="True" result="Success" success="True" time="8.701" asserts="4" />
-              <test-case name="MTU.MTU.D_Logout" executed="True" result="Success" success="True" time="1.180" asserts="0" />
-              <test-case name="MTU.MTU.JIRA" executed="True" result="Success" success="True" time="20.481" asserts="0" />
+              <test-case name="MTU.MTU.A0_Login" executed="True" result="Success" success="True" time="18.707" asserts="0" />
+              <test-case name="MTU.MTU.A1_AddNewTemplate" executed="True" result="Success" success="True" time="13.936" asserts="2" />
+              <test-case name="MTU.MTU.A2_UpdateTemplate" executed="True" result="Success" success="True" time="9.298" asserts="2" />
+              <test-case name="MTU.MTU.A3_AddedNewProm" executed="True" result="Success" success="True" time="15.904" asserts="2" />
+              <test-case name="MTU.MTU.A4_CheckPromoSubtab" executed="True" result="Success" success="True" time="12.393" asserts="2" />
+              <test-case name="MTU.MTU.A5_CheckInPromMarket" executed="True" result="Success" success="True" time="10.871" asserts="2" />
+              <test-case name="MTU.MTU.A6_DeleteTemplate" executed="True" result="Success" success="True" time="21.538" asserts="4" />
+              <test-case name="MTU.MTU.JIRA" executed="True" result="Success" success="True" time="53.834" asserts="0" />
             </results>
           </test-suite>
         </results>

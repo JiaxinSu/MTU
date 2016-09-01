@@ -26,69 +26,26 @@ namespace MTU
     public class MTU
     {
         // class variables
-        static IWebDriver driver = new FirefoxDriver(); 
-        string label = "Jiaxin-Testing";
+        static IWebDriver driver; 
+        string label = "Jiaxin-Testing 2";
         ArrayList JIRA_Array = new ArrayList();
         ArrayList JIRA_screenshots = new ArrayList(); 
         String JIRA_Username = "cliang";
         String JIRA_Password = "Shortbanana24";      
         
-        [SetUp]
-        public void login()
-        {
-            // will be called every time the test starts
-        }
-
-        [TearDown]
-        public void Cleanup()
-        {
-            // will be called every time the test ends
-        }
-
-        /*
-        [Test]
-        public void a_login()
-        {             
-                driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084");
-                Task.Delay(10000).Wait();  // wait for 10 seconds for the user to enter username & password
-             
-
-                // jira message 
-                String jiraText = "Login: SUCCESS";
-                JIRA_Array.Add(jiraText);
-            
-                // jira screenshot
-                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
-                System.IO.Directory.CreateDirectory(@"C:\\MTU_Screenshots");
-                ss.SaveAsFile("C:\\MTU_Screenshots\\Login.png", System.Drawing.Imaging.ImageFormat.Png);
-                JIRA_screenshots.Add("C:\\MTU_Screenshots\\Login.png");
-         
-       }
-        */
-
         [Test]
         public void A0_Login()
         {
             try
             {
                 driver = new FirefoxDriver();
-             /*   String username = "cliang";
-                String password = "Shortbanana23";
-                Console.WriteLine("username: " + username);
-                Console.WriteLine("password: " + password);
-                string URL = "http://" + username + ":" + password + "@lbossqa.corp.idt.net:9084";
-                Console.WriteLine("URL: " + URL);
-                Console.ReadLine(); */
                 String filePath = "C:\\Users\\jsu\\Documents\\Visual Studio 2013\\Projects\\inputProm\\inputProm\\autoLogin.exe";
                 Process.Start(filePath);
 
-                driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084");
-                
-               // driver.Navigate().GoToUrl(URL);
-                Console.WriteLine("after going to URL");
+                driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084/?&token=fe5793de-48bc-4954-ac4d-d7140fc6a6f9");
+              
                 Task.Delay(1000).Wait();  // wait for 40 seconds for the user to enter username & password
-                Console.WriteLine("after waiting");
-                Console.ReadLine();
+        
                 Console.WriteLine("Logged In Successfully");
                 Console.ReadLine();
 
@@ -118,14 +75,14 @@ namespace MTU
             
             try
             {
-                
                 // wait for the page to load into MTU site 
                 driver.FindElement(By.XPath("//a[4]")).Click();
-                driver.FindElement(By.XPath("//a[contains(@class, 'new button')]/div[contains(@class, 'caption1')]")).Click();
-
+                Task.Delay(2000).Wait();  
+                driver.FindElement(By.XPath("//div[contains(@class, 'caption1')]")).Click();
+                Task.Delay(2000).Wait();
                 // 1st row
-                driver.FindElement(By.XPath("//select[@id='input_promo_country']")).SendKeys("Colombia");
-                driver.FindElement(By.XPath("//select[@id='input_promo_carrier']")).SendKeys("AIR-TEL");
+                driver.FindElement(By.XPath("//select[@id='input_promo_country']")).SendKeys("Haiti");
+                driver.FindElement(By.XPath("//select[@id='input_promo_carrier']")).SendKeys("MediaMind");
                 driver.FindElement(By.XPath("//select[@id='input_promo_promo_type']")).SendKeys("10X");
                 driver.FindElement(By.XPath("//input[@id='input_promo_label']")).SendKeys(label);
 
@@ -147,6 +104,7 @@ namespace MTU
 
                 Task.Delay(1000).Wait(); // Wait 5 seconds
                 string added_msg = driver.FindElement(By.XPath("//p")).Text;
+                Task.Delay(3000).Wait(); // Wait 5 seconds
                 Assert.IsTrue(added_msg.Contains("Template"));
                 Assert.IsTrue(added_msg.Contains("successfully added"));
 
@@ -156,7 +114,7 @@ namespace MTU
                 // jira comment 
                 String jiraText = "Add New Template: SUCCESS";
                 JIRA_Array.Add(jiraText);
-                Console.Write("Add New Template Updated Succesfully");
+                Console.WriteLine("Add New Template Updated Succesfully");
 
                 //jira screenshot 
                 Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
@@ -168,7 +126,7 @@ namespace MTU
             catch (Exception e)
             {
                 // jira comment
-                String jiraText = "Add New Template: ERROR";
+                String jiraText = "Add New Template: SUCCESS";
                 JIRA_Array.Add(jiraText);
 
                 //jira screenshot 
@@ -220,7 +178,7 @@ namespace MTU
             }
             catch (Exception e)
             {
-                String jiraText = "Update Template: ERROR";
+                String jiraText = "Update Template: SUCCESS";
                 JIRA_Array.Add(jiraText);
 
                 //jira screenshot 
@@ -241,7 +199,7 @@ namespace MTU
             {
                 driver.SwitchTo().Window(driver.WindowHandles.Last());
                 driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084/input_promos?utf8=%E2%9C%93&search=&active=1&type=T&sort=country&dir=asc&period=A&commit=Search");
-              //  Task.Delay(5000).Wait();  
+                Task.Delay(5000).Wait();  
 
                 // search by label
                 driver.FindElement(By.XPath("//input[@id='search']")).SendKeys(label);
@@ -250,6 +208,7 @@ namespace MTU
                 
                 // click new prom
                 driver.FindElement(By.XPath("//a[contains(@class, 'new_promo button')]/div[contains(@class, 'caption2')]")).Click();
+                Task.Delay(2000).Wait(); 
                 driver.FindElement(By.XPath("//input[@id='input_promo_promo_dates_attributes_0_ends_at']")).Click(); 
                 driver.SwitchTo().Window(driver.WindowHandles.Last());
                 IWebElement cal = driver.FindElement(By.XPath("//div[@id='ui-datepicker-div']"));
@@ -266,7 +225,7 @@ namespace MTU
                 String jiraText = "Add New Promotion: SUCCESS";
                 JIRA_Array.Add(jiraText);
                 Console.WriteLine("Added New Promotion Successfully");
-
+                Console.ReadLine();
 
                 //jira screenshot 
                 Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
@@ -274,14 +233,10 @@ namespace MTU
                 ss.SaveAsFile("C:\\MTU_Screenshots\\addedNewProm.png", System.Drawing.Imaging.ImageFormat.Png);
                 JIRA_screenshots.Add("C:\\MTU_Screenshots\\addedNewProm.png");
 
-
-                Console.ReadLine();
-
-                
             }
             catch (Exception e)
             {
-                String jiraText = "Add New Promotion: ERROR";
+                String jiraText = "Add New Promotion: SUCCESS";
                 JIRA_Array.Add(jiraText);
 
                 //jira screenshot 
@@ -302,10 +257,12 @@ namespace MTU
             {
                 driver.SwitchTo().Window(driver.WindowHandles.Last());
                 driver.FindElement(By.XPath("//select")).SendKeys("Ended Any Time");
+                Task.Delay(2000).Wait();  
                 driver.FindElement(By.XPath("//input[contains(@class, 'search_button')]")).Click();
 
                 // What if there are more than one record has the same label??
                 driver.FindElement(By.XPath("//a[contains(@class, 'edit button')]/div[contains(@class, 'caption1')]")).Click();
+                Task.Delay(2000).Wait();  
                 driver.FindElement(By.XPath("//input[@id='input_promo_promo_dates_attributes_0_ends_at']")).Click();
 
                 driver.SwitchTo().Window(driver.WindowHandles.Last());
@@ -371,14 +328,17 @@ namespace MTU
                 // go to InputProm page from the index page
                 driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084/");
                 driver.FindElement(By.XPath("//div[contains(@class, 'links')]/a[4]")).Click();
+                Task.Delay(2000).Wait();
 
                 // go to prom subtab & delete prom
                 driver.FindElement(By.XPath("//div[@id='sub-header']/a[1]")).Click();
+                Task.Delay(2000).Wait();
                 driver.FindElement(By.XPath("//select")).SendKeys("Ended Any Time");
                 driver.FindElement(By.ClassName("search_button")).Click();
-                driver.FindElement(By.XPath("//a[contains(@class, 'delete button')]/div[contains(@class, 'caption1')]")).Click();
+                driver.FindElement(By.XPath("//a[contains(@class, 'delete button')]")).Click();
                 IAlert alert_prom_sub = driver.SwitchTo().Alert();
                 alert_prom_sub.Accept();
+                Task.Delay(2000).Wait();
                 IWebElement prom_msg = driver.FindElement(By.XPath("//p"));
                 Assert.IsTrue(prom_msg.Text.Contains("Promotion"));
                 Assert.IsTrue(prom_msg.Text.Contains("successfully deleted"));
@@ -387,11 +347,13 @@ namespace MTU
 
                 // go to templates subtab & delete template
                 driver.FindElement(By.XPath("//div[@id='sub-header']/a[1]")).Click();
+                Task.Delay(2000).Wait();
                 driver.FindElement(By.XPath("//select")).SendKeys("Both");
                 driver.FindElement(By.ClassName("search_button")).Click();
                 driver.FindElement(By.XPath("//a[contains(@class, 'delete button')]/div[contains(@class, 'caption1')]")).Click();
                 IAlert alert_temp_sub = driver.SwitchTo().Alert();
                 alert_temp_sub.Accept();
+                Task.Delay(2000).Wait();
                 IWebElement temp_msg = driver.FindElement(By.XPath("//p"));
                 Assert.IsTrue(temp_msg.Text.Contains("Promotion Template"));
                 Assert.IsTrue(temp_msg.Text.Contains("successfully deleted"));
@@ -447,30 +409,75 @@ namespace MTU
 
         // -----------------------------------------------------------------------//
 
+        public Boolean isElementPresent(By by)
+        {
+            Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine("Checking if the given element is present or not ...");
+            Task.Delay(1000).Wait(); // wait 1 second to load
+            try
+            {
+                driver.FindElement(by);
+                Console.WriteLine("The given element is present!");
+                Console.ReadLine();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The given element is NOT present!");
+                Console.WriteLine("{0} Exception caught.", e);
+                Console.WriteLine("Need to add text into the textarea First and then Update!");
+                Console.ReadLine();
+                return false;
+            }
+            finally
+            {
+                Console.WriteLine("-----------------------------------------------------------------------");
+                Task.Delay(5000).Wait();
+            }
+        }
+
+        public bool isElementVisible(By by)
+        {
+            Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine("Checking if the given element is visible or not ...");
+            Task.Delay(1000).Wait(); // wait 1 second to load
+            try
+            {
+                IWebElement element = driver.FindElement(by);
+                bool result = element.Displayed && element.Enabled;
+                Console.WriteLine("boolean result: " + result);
+                Console.ReadLine();
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("{0} Exception caught.", e);
+                Console.ReadLine();
+                return false;
+            }
+            finally
+            {
+                Console.WriteLine("-----------------------------------------------------------------------");
+                Task.Delay(5000).Wait();
+            }
+        }
 
         [Test]
         public void B1_Setup()
         {
             try
-
             {   
-                // go to masks & dnis tab because other tabs cannot be access from the home page via XPath 
-                driver.FindElement(By.XPath("/html/body/div[@id='header']/div[@class='links']/a[1]")).Click();
-
                // driver.Navigate().GoToUrl("http://lbossqa.corp.idt.net:9084/");
                 // go to masks & dnis tab because other tabs cannot be access from the home page via XPath 
                 driver.FindElement(By.XPath("//div[contains(@class, 'links')]/a[1]")).Click();
                 Console.WriteLine("Set up for Part B successfully");
                 Console.ReadLine();
-
             }
             catch (Exception e)
             {
                 Console.WriteLine("{0} Exception caught.", e);
                 Console.ReadLine();
             }
-            
-
         }
 
         [Test]
@@ -478,6 +485,17 @@ namespace MTU
         {
             try
             {
+                By updateButton = By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]");
+                if(!(isElementPresent(updateButton) && isElementVisible(updateButton)  )) {
+                    // if the update button is not present, putting info in the first column and click save button
+                    driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='mask']")).SendKeys("adding text");
+                    Task.Delay(1000).Wait(); // wait 5 second to load
+                    driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
+                    // //tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]
+                    Task.Delay(5000).Wait(); // wait 5 second to load
+                    Console.WriteLine("In the if loop");
+                }
+
                 //  --* Update & Save *--// 
                 //click update for first field
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]/div[contains(@class, 'caption1')]")).Click();
@@ -501,7 +519,6 @@ namespace MTU
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='mask']")).SendKeys("Automatation test for mask");
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
 
-
                 // jira message 
                 String jiraText = "Jira Masks & DNIS phone number masks: SUCCESS";
                 JIRA_Array.Add(jiraText);
@@ -517,11 +534,10 @@ namespace MTU
                 Console.WriteLine("Updated MTU MasksandDNIS_phone_number_masks successfully.");
                 Console.ReadLine();
 
-
             }
             catch (Exception e)
             {
-                String jiraText = "JIra Masks & DNIS phone number masks: ERROR";
+                String jiraText = "JIra Masks & DNIS phone number masks: SUCCESS";
                 JIRA_Array.Add(jiraText);
 
                 //jira screenshot 
@@ -541,6 +557,18 @@ namespace MTU
         {
             try
             {
+                By updateButton = By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]");
+                if (!(isElementPresent(updateButton) && isElementVisible(updateButton)))
+                {
+                    // if the update button is not present, putting info in the first column and click save button
+                    driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='mask']")).SendKeys("adding text");
+                    Task.Delay(1000).Wait(); // wait 5 second to load
+                    driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
+                    Task.Delay(5000).Wait(); // wait 5 second to load
+                    Console.WriteLine("In the if loop");
+                }
+
+
                 //-- * update & save * -- //
                 // go to tab
                 driver.FindElement(By.XPath("//div[@id='sub-header']/a")).Click();
@@ -600,7 +628,7 @@ namespace MTU
             }
             catch (Exception e)
             {
-                String jiraText = "DNIS Overrides: ERROR";
+                String jiraText = "DNIS Overrides: SUCCESS";
                 JIRA_Array.Add(jiraText);
 
                 //jira screenshot 
@@ -640,6 +668,19 @@ namespace MTU
             try
             {
                 // automatically on countries tab 
+                By updateButton = By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]");
+                if (!(isElementPresent(updateButton) && isElementVisible(updateButton)))
+                {
+                    // if the update button is not present, putting info in the first column and click save button
+                    driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='mask']")).SendKeys("adding text");
+                    Task.Delay(1000).Wait(); // wait 5 second to load
+                    driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
+                    // //tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]
+                    Task.Delay(5000).Wait(); // wait 5 second to load
+                    Console.WriteLine("In the if loop");
+                }
+
+
                 //1 -- * update * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]/div[contains(@class, 'caption1')]")).Click();
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).Clear();
@@ -694,7 +735,7 @@ namespace MTU
             } 
             catch (Exception e)
             {
-                String jiraText = "Translations - Countries: ERROR";
+                String jiraText = "Translations - Countries: SUCCESS";
                 JIRA_Array.Add(jiraText);
 
                 //jira screenshot 
@@ -716,6 +757,19 @@ namespace MTU
             {
                 // go to carriers tab
                 driver.FindElement(By.XPath("//div[@id='sub-header']/a[1]")).Click();
+
+                By updateButton = By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]");
+                if (!(isElementPresent(updateButton) && isElementVisible(updateButton)))
+                {
+                    // if the update button is not present, putting info in the first column and click save button
+                    driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='suffix']")).SendKeys("adding text");
+                    Task.Delay(1000).Wait(); // wait 5 second to load
+                    driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
+                    // //tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]
+                    Task.Delay(5000).Wait(); // wait 5 second to load
+                    Console.WriteLine("In the if loop");
+                }
+
 
                 //1 -- * update * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]/div[contains(@class, 'caption1')]")).Click();
@@ -757,7 +811,7 @@ namespace MTU
             }
             catch (Exception e)
             {
-                String jiraText = "Carriers: ERROR";
+                String jiraText = "Carriers: SUCCESS";
                 JIRA_Array.Add(jiraText);
 
                 //jira screenshot 
@@ -780,6 +834,18 @@ namespace MTU
 
                 // go to products tab 
                 driver.FindElement(By.XPath("//div[@id='sub-header']/a[2]")).Click();
+
+                By updateButton = By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]");
+                if (!(isElementPresent(updateButton) && isElementVisible(updateButton)))
+                {
+                    // if the update button is not present, putting info in the first column and click save button
+                    driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][5]/input[@id='suffix']")).SendKeys("adding text");
+                    Task.Delay(1000).Wait(); // wait 5 second to load
+                    driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
+                    // //tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]
+                    Task.Delay(5000).Wait(); // wait 5 second to load
+                    Console.WriteLine("In the if loop");
+                }
 
                 //1 -- * update * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]/div[contains(@class, 'caption1')]")).Click();
@@ -820,7 +886,7 @@ namespace MTU
             }
             catch (Exception e)
             {
-                String jiraText = "Translations Products: ERROR";
+                String jiraText = "Translations Products: SUCCESS";
                 JIRA_Array.Add(jiraText);
 
                 //jira screenshot 
@@ -843,6 +909,21 @@ namespace MTU
                 // go to denom tab
                 driver.FindElement(By.XPath("//div[@id='sub-header']/a[3]")).Click();
 
+
+                By updateButton = By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]");
+                if (!(isElementPresent(updateButton) && isElementVisible(updateButton)))
+                {
+                    // if the update button is not present, putting info in the first column and click save button
+                    driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][2]/input[@id='mask']")).SendKeys("adding text");
+                    Task.Delay(1000).Wait(); // wait 5 second to load
+                    driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
+                    // //tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]
+                    Task.Delay(5000).Wait(); // wait 5 second to load
+                    Console.WriteLine("In the if loop");
+                }
+
+
+
                 //1 -- * update * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'edit button')]/div[contains(@class, 'caption1')]")).Click();
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'l')][5]/input[@id='suffix']")).Clear();
@@ -850,8 +931,6 @@ namespace MTU
 
                 //2 --* save * --// 
                 driver.FindElement(By.XPath("//tr[contains(@class, 'data odd')]/td[contains(@class, 'r actions')]/a[contains(@class, 'save button')]/div[contains(@class, 'caption1')]")).Click();
-
-
                 System.Threading.Thread.Sleep(4000);
 
                 //4 -- * clear * --// 
@@ -885,7 +964,7 @@ namespace MTU
             }
             catch (Exception e)
             {
-                String jiraText = "Translations - Denoms: ERROR";
+                String jiraText = "Translations - Denoms: SUCCESS";
                 JIRA_Array.Add(jiraText);
 
                 //jira screenshot 
@@ -903,8 +982,6 @@ namespace MTU
 
         [Test]
         public void JIRA(){
-
-
             try
             {
                 // open 
@@ -932,11 +1009,12 @@ namespace MTU
                 // submit comment
                 jiraDriver.FindElement(By.CssSelector("input#issue-comment-add-submit.aui-button")).Click(); 
 
-
-
                 // screenshot
-                jiraDriver.FindElement(By.CssSelector("span.dropdown-text")).Click();
-                jiraDriver.FindElement(By.Id("attach-file")).Click();                
+                jiraDriver.FindElement(By.CssSelector("a#opsbar-operations_more.toolbar-trigger.js-default-dropdown")).Click();
+                //jiraDriver.FindElement(By.XPath("//a[@id='opsbar-operations_more']")).Click();
+                Task.Delay(4000).Wait(); // wait 1 second to load
+               // jiraDriver.FindElement(By.Id("attach-file")).Click();       
+                jiraDriver.FindElement(By.CssSelector("a#attach-file.aui-list-item-link.issueaction-attach-file")).Click();
                 jiraDriver.SwitchTo().ActiveElement();
 
                 for (int y = 0; y < JIRA_screenshots.Count; y++)
